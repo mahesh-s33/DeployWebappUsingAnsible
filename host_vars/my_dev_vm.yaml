@@ -1,0 +1,5 @@
+ansible_host: local
+ansible_connection: local
+database_name: employee_db
+database_user: db_user
+database_password: Passw0rd

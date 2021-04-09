@@ -1,0 +1,27 @@
+    - name: Install PostgreSQL
+      apt: name={{ item }} update_cache=true state=installed
+      with_items:
+       - postgresql
+       - postgresql-contrib
+       - libpq-dev
+       - python-psycopg2
+
+    - name: Ensure the PostgreSQL service is running
+      service: name=postgresql state=started enabled=yes
+
+    - name: Ensure database is created
+      become: true
+      become_user: postgres
+      postgresql_db:
+        name: "{{ database_name }}"
+        state: present
+
+    - name: Ensure user has access to the database
+      become: true
+      become_user: postgres
+      postgresql_user:
+        db: "{{ database_name }}"
+        name: "{{ database_user }}"
+        password: "{{ database_password }}"
+        priv: ALL
+        state: present
