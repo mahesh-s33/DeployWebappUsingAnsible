@@ -1,0 +1,7 @@
+    - name: Install Python Flask
+      pip:
+        name: flask
+        state: present
+
+    - name: Run web app
+      shell: python app.py nohup &

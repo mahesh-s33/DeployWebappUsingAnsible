@@ -1,0 +1,7 @@
+-
+  name: Deploy a web application
+  hosts: my_dev_vm
+  roles: 
+    - python
+    - postgres_db
+    - web_server
